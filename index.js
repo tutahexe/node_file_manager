@@ -1,7 +1,9 @@
 import { argv } from "node:process";
+import readline from "node:readline";
 import os from "os";
 
 let usernameVar = "";
+let operation = "";
 
 const inint = () => {
   parseUsernameArgs();
@@ -9,7 +11,6 @@ const inint = () => {
   cwdDisplay();
   process.chdir(homeDir());
   cwdDisplay();
-  byeUser();
 };
 
 const parseUsernameArgs = () => {
@@ -30,5 +31,35 @@ const hiUser = () =>
 
 const byeUser = () =>
   console.log(`Thank you for using File Manager, ${usernameVar}, goodbye!`);
+
+if (process.platform === "win32") {
+  var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.on("line", (input) => {
+    switch (input) {
+      case ".exit":
+        byeUser();
+        process.exit();
+      case "zip":
+        console.log("Oranges are $0.59 a pound.");
+        break;
+      default:
+        console.log(`Sorry, we are not aware of of ${operation}.`);
+    }
+  });
+
+  rl.on("SIGINT", function () {
+    process.emit("SIGINT");
+  });
+}
+
+process.on("SIGINT", function () {
+  //graceful shutdown
+  byeUser();
+  process.exit();
+});
 
 inint();
