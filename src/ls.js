@@ -5,11 +5,20 @@ export const lsDisplay = async () => {
     if (err) {
       console.error("FS operation failed");
     } else {
-      fs.readdir(process.cwd(), (err, files) => {
+      fs.readdir(process.cwd(), { withFileTypes: true }, (err, files) => {
         if (err) {
           console.error("FS operation failed");
         } else {
-          console.log(files);
+          var result = [];
+          files.forEach((element) => {
+            result.push(
+              new Object({
+                nm: element.name,
+                type: element.isFile() ? "File" : "Directory",
+              })
+            );
+          });
+          console.table(result);
         }
       });
     }
