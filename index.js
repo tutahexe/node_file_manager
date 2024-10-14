@@ -13,6 +13,7 @@ import { moveFile } from "./src/move.js";
 import { deleteFile } from "./src/delete.js";
 import { compressFile } from "./src/compress.js";
 import { decompressFile } from "./src/decompress.js";
+import { calculateHash } from "./src/hash.js";
 
 let usernameVar = "";
 let operation = "";
@@ -92,6 +93,9 @@ if (process.platform === "win32") {
         break;
       case "decompress":
         decompressFile(args[1], args[2]);
+        break;
+      case "hash":
+        calculateHash(args[1]);
         break;
       default:
         console.log(`Sorry, we are not aware of of ${operation}.`);
