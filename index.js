@@ -5,9 +5,16 @@ import path from "path";
 import { up } from "./src/up.js";
 import { cd } from "./src/cd.js";
 import { lsDisplay } from "./src/ls.js";
+import { createFile } from "./src/create.js";
+import { readFile } from "./src/read.js";
+import { renameFile } from "./src/rename.js";
+import { copyFile } from "./src/copy.js";
+import { moveFile } from "./src/move.js";
+import { deleteFile } from "./src/delete.js";
 
 let usernameVar = "";
 let operation = "";
+const programDir = process.cwd();
 
 const inint = () => {
   parseUsernameArgs();
@@ -52,15 +59,31 @@ if (process.platform === "win32") {
         process.exit();
       case "up":
         up();
-        cwdDisplay();
         break;
       case "cd":
         cd(args[1]);
-        cwdDisplay();
         break;
       case "ls":
         lsDisplay();
         cwdDisplay();
+        break;
+      case "cat":
+        readFile(args[1]);
+        break;
+      case "add":
+        createFile();
+        break;
+      case "rn":
+        renameFile(args[1], args[2]);
+        break;
+      case "cp":
+        copyFile(args[1], args[2]);
+        break;
+      case "mv":
+        moveFile(args[1], args[2]);
+        break;
+      case "rm":
+        deleteFile(args[1]);
         break;
       case "zip":
         console.log("Archivating everything." + args[1]);
@@ -68,6 +91,8 @@ if (process.platform === "win32") {
       default:
         console.log(`Sorry, we are not aware of of ${operation}.`);
     }
+
+    cwdDisplay();
   });
 
   rl.on("SIGINT", function () {
