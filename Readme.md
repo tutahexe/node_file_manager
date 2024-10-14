@@ -14,6 +14,12 @@ Task was to implement File Manager using Node.js APIs.
 - Compress and decompress files
 - Compress and decompress files
 
+### Initial launch:
+
+```
+node run start -- --username=your_username
+```
+
 ### Navigation example:
 
 ```
@@ -84,3 +90,11 @@ os --architecture
 ```
 hash empty.txt
 ```
+
+### Quit
+
+```
+.exit
+```
+
+or use "ctrl+c", program will still gracefully shutdown.
