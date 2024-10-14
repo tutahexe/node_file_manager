@@ -97,4 +97,4 @@ hash empty.txt
 .exit
 ```
 
-or use "ctrl+c", program will still gracefully shutdown.
+or use "ctrl+c", program will gracefully close anyway.
