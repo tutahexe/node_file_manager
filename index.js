@@ -4,6 +4,7 @@ import os from "os";
 import path from "path";
 import { up } from "./src/up.js";
 import { cd } from "./src/cd.js";
+import { lsDisplay } from "./src/ls.js";
 
 let usernameVar = "";
 let operation = "";
@@ -55,6 +56,10 @@ if (process.platform === "win32") {
         break;
       case "cd":
         cd(args[1]);
+        cwdDisplay();
+        break;
+      case "ls":
+        lsDisplay();
         cwdDisplay();
         break;
       case "zip":
