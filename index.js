@@ -11,6 +11,8 @@ import { renameFile } from "./src/rename.js";
 import { copyFile } from "./src/copy.js";
 import { moveFile } from "./src/move.js";
 import { deleteFile } from "./src/delete.js";
+import { compressFile } from "./src/compress.js";
+import { decompressFile } from "./src/decompress.js";
 
 let usernameVar = "";
 let operation = "";
@@ -85,8 +87,11 @@ if (process.platform === "win32") {
       case "rm":
         deleteFile(args[1]);
         break;
-      case "zip":
-        console.log("Archivating everything." + args[1]);
+      case "compress":
+        compressFile(args[1], args[2]);
+        break;
+      case "decompress":
+        decompressFile(args[1], args[2]);
         break;
       default:
         console.log(`Sorry, we are not aware of of ${operation}.`);
