@@ -1,7 +1,6 @@
 import { createBrotliCompress } from "node:zlib";
 import { pipeline } from "node:stream";
 import { createReadStream, createWriteStream } from "node:fs";
-import path from "node:path";
 
 export const compressFile = async (oldPath, newPath) => {
   const brotli = createBrotliCompress();

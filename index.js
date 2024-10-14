@@ -75,7 +75,7 @@ if (process.platform === "win32") {
         readFile(args[1]);
         break;
       case "add":
-        createFile();
+        createFile(args[1]);
         break;
       case "rn":
         renameFile(args[1], args[2]);

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-export const createFile = async () => {
-  let filePath = path.join(process.cwd(), "empty.txt");
+export const createFile = async (filename) => {
+  let filePath = path.join(process.cwd(), filename);
   let content = "";
   fs.writeFile(filePath, content, (err) => {
     if (err) {
