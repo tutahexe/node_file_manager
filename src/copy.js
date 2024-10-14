@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import path from "node:path";
 
 export const copyFile = async (oldPath, newPath) => {
   const readable = fs.createReadStream(oldPath);
