@@ -14,6 +14,7 @@ import { deleteFile } from "./src/delete.js";
 import { compressFile } from "./src/compress.js";
 import { decompressFile } from "./src/decompress.js";
 import { calculateHash } from "./src/hash.js";
+import { osInfo } from "./src/osInfo.js";
 
 let usernameVar = "";
 let operation = "";
@@ -96,6 +97,9 @@ if (process.platform === "win32") {
         break;
       case "hash":
         calculateHash(args[1]);
+        break;
+      case "os":
+        osInfo(args[1]);
         break;
       default:
         console.log(`Sorry, we are not aware of of ${operation}.`);
