@@ -1,6 +1,9 @@
 import { argv } from "node:process";
 import readline from "node:readline";
 import os from "os";
+import path from "path";
+import { up } from "./src/up.js";
+import { cd } from "./src/cd.js";
 
 let usernameVar = "";
 let operation = "";
@@ -18,6 +21,8 @@ const parseUsernameArgs = () => {
     if (argv[i].startsWith("--username=")) {
       // process.env.username = argv[i].slice(11);
       usernameVar = argv[i].slice(11);
+    } else {
+      usernameVar = "Anonymous User";
     }
   }
 };
@@ -39,12 +44,21 @@ if (process.platform === "win32") {
   });
 
   rl.on("line", (input) => {
-    switch (input) {
+    const args = input.split(" ");
+    switch (args[0]) {
       case ".exit":
         byeUser();
         process.exit();
+      case "up":
+        up();
+        cwdDisplay();
+        break;
+      case "cd":
+        cd(args[1]);
+        cwdDisplay();
+        break;
       case "zip":
-        console.log("Oranges are $0.59 a pound.");
+        console.log("Archivating everything." + args[1]);
         break;
       default:
         console.log(`Sorry, we are not aware of of ${operation}.`);
