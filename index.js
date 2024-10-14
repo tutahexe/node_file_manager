@@ -23,7 +23,6 @@ const programDir = process.cwd();
 const inint = () => {
   parseUsernameArgs();
   hiUser();
-  cwdDisplay();
   process.chdir(homeDir());
   cwdDisplay();
 };

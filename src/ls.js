@@ -10,16 +10,26 @@ export const lsDisplay = async () => {
           console.error("FS operation failed");
         } else {
           var result = [];
-          files.forEach((element) => {
-            result.push(
-              new Object({
-                nm: element.name,
-                type: element.isFile() ? "File" : "Directory",
-              })
-            );
-          });
-          console.table(result);
         }
+        files.forEach((element) => {
+          result.push(
+            new Object({
+              fileName: element.name,
+              type: element.isFile() ? "File" : "Directory",
+            })
+          );
+        });
+        console.table(
+          result.sort((a, b) => {
+            if (a.type === "Directory" && b.type === "File") {
+              return -1;
+            }
+            if (a.type === "File" && b.type === "Directory") {
+              return 1;
+            }
+            return a.fileName.localeCompare(b.fileName);
+          })
+        );
       });
     }
   });
